@@ -38,9 +38,9 @@ while True:
 
     random_num = random.randint(0, len(Jstr))
     while random_num in already_answered:
-        random_num = random.randint(0, len(Jstr)) # 일본어 중복시 다시 번호 뽑음
+        random_num = random.randint(0, len(Jstr))       # 일본어 중복시 다시 번호 뽑음
     
-    already_answered.insert(0, random_num) # 이미 뽑은 번호는 리스트에 추가
+    already_answered.insert(0, random_num)      # 이미 뽑은 번호는 리스트에 추가
     Jstr2 = re.split(r"[\u3000\s+]", Jstr[random_num])
              
     print(f"한자 : {Jstr2[0]}\n")
