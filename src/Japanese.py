@@ -65,7 +65,7 @@ false_answer.close()
 JF.close()
 
 
-
+#Git 충돌 발생
 # 일본어 프로그램
 # 반복 횟수는 단어 갯수만큼
 
