@@ -65,7 +65,7 @@ false_answer.close()
 JF.close()
 
 
-
+#Git conflit 발생 시키는 코드
 # 일본어 프로그램
 # 반복 횟수는 단어 갯수만큼
 
