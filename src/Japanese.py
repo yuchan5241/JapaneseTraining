@@ -69,7 +69,6 @@ JF.close()
 # 일본어 프로그램
 # 반복 횟수는 단어 갯수만큼
 
-#C:\Users\sunfl\AppData\Local\Programs\VOICEVOX\vv-engine voicevox 사이트 연결 exe'
 #git init
 #git add 파일명
 #git commit -m "메모 내용"
