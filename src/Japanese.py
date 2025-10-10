@@ -67,9 +67,6 @@ JF.close()
 
 
 # 일본어 프로그램
-# 단어는 랜덤
-# 랜덤으로 만드는 방법
-# readlines로 한줄 한줄을 리스트로 만든 후, 랜덤 모듈로 숫자를 가져와서 split으로 나눈다.
 # 반복 횟수는 단어 갯수만큼
 
 #C:\Users\sunfl\AppData\Local\Programs\VOICEVOX\vv-engine voicevox 사이트 연결 exe'
