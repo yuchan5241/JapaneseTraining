@@ -1,0 +1,4 @@
+import os
+
+
+os.system("C:/Users/sunfl/AppData/Local/Programs/VOICEVOX/vv-engine/run.exe")
