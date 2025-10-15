@@ -5,9 +5,9 @@ random_num = 0
 already_answered = []
 try_num = 0
 try_string = str()
-JF = open('C:/Japanese/JapaneseVoca.txt', 'r', encoding="UTF-8")
+JF = open('Programs/JapaneseVoca.txt', 'r', encoding="UTF-8")
 Jstr = list()
-try_file = open("C:/Japanese/try_num.txt", 'r', encoding="UTF-8")
+try_file = open("Programs/try_num.txt", 'r', encoding="UTF-8")
 
 
 #try_num을 try_file에 저장된 시도 횟수를 읽어 저장
@@ -15,7 +15,7 @@ try_string = try_file.readline()
 try_file.close()
 #파일에서 시도 횟수 가져오고 파일 닫기
 
-try_file = open("C:/Japanese/try_num.txt", 'r+', encoding="UTF-8") #읽기 쓰기 타입으로 파일 염, 기존 내용 유지
+try_file = open("Programs/try_num.txt", 'r+', encoding="UTF-8") #읽기 쓰기 타입으로 파일 염, 기존 내용 유지
 
 try_num = int(try_string) + 1
 try_file.write(f"{try_num}")
@@ -26,7 +26,7 @@ try_file.close()
 
 #시도 횟수 파일에 새로 쓰기
 
-false_answer = open(f"C:/Japanese/false_answers/false_answer{try_num}.txt", 'w', encoding="UTF-8")
+false_answer = open(f"Programs/false_answers/false_answer{try_num}.txt", 'w', encoding="UTF-8")
 
 
 print("프로그램을 종료하려면 exit를 입력하세요\n")
