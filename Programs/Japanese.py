@@ -19,10 +19,10 @@ try_file = open("Programs/try_num.txt", 'r+', encoding="UTF-8") #읽기 쓰기 �
 
 try_num = int(try_string) + 1
 try_file.write(f"{try_num}")
-
+try_file.close()
 #파일 시도 횟수 저장하기
 
-try_file.close()
+
 
 #시도 횟수 파일에 새로 쓰기
 
