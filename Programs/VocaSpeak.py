@@ -2,7 +2,6 @@ import requests
 import numpy as np
 import json
 import sounddevice as sd
-import pprint
 
 host = "127.0.0.1"
 port = "50021"
