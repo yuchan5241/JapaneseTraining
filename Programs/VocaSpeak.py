@@ -39,7 +39,7 @@ def play_wavfile(wav_data: bytes):
     sample_rate = 24000
     wav_array = np.frombuffer(wav_data, dtype=np.int16)
     sd.play(wav_array, sample_rate, blocking=True)
-    wa.write("test.wav", 44100, wav_array)
+    wa.write("test.wav", sample_rate, wav_array)
 
 
 def text_to_voice():
