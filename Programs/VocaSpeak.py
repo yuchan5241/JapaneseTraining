@@ -2,6 +2,7 @@ import requests
 import numpy as np
 import json
 import sounddevice as sd
+import scipy.io.wavfile as wa
 
 host = "127.0.0.1"
 port = "50021"
@@ -37,6 +38,7 @@ def post_synthesis(query_data: dict) -> bytes:
 def play_wavfile(wav_data: bytes):
     sample_rate = 24000
     wav_array = np.frombuffer(wav_data, dtype=np.int16)
+    wa.write("test.wav", 1, wav_array)
     sd.play(wav_array, sample_rate, blocking=True)
 
 def text_to_voice():
@@ -47,9 +49,7 @@ def text_to_voice():
         
         res = post_audio_query(text)
         wav = post_synthesis(res)
-        print(wav)
 
-        play_wavfile(wav)
 
 
 if __name__ == "__main__":
