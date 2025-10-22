@@ -9,12 +9,14 @@ speaker = 3
 
 def post_audio_query(text: str) -> dict:  #function annoation :, -> 데이터의 타입에 대한 보충 설명, : (입력 데이터 타입), -> (출력 데이터 타입)
     params = {"text": text, "speaker": speaker}
-
-    res = requests.post(
-        f"http://{host}:{port}/audio_query",
-        params=params,
-    )
-
+    try:
+        res = requests.post(
+            f"http://{host}:{port}/audio_query",
+            params=params,
+        )
+    except:
+        print("웹 서버와 연결되지 않았습니다.")
+        exit()
     query_data = res.json()     #음성 합성을 위한 쿼리문(높낮이, 소리 크기, 말하기 속도 등의 데이터들이 json 파일 형태로 담겨있음)
                                 #.json() 함수는 json 파일 내용을 딕셔너리 타입으로 바꿔준다.
 
@@ -45,6 +47,8 @@ def text_to_voice():
         
         res = post_audio_query(text)
         wav = post_synthesis(res)
+        print(wav)
+
         play_wavfile(wav)
 
 
