@@ -3,6 +3,7 @@ import numpy as np
 import json
 import sounddevice as sd
 import scipy.io.wavfile as wa
+import time
 
 host = "127.0.0.1"
 port = "50021"
@@ -35,11 +36,13 @@ def post_synthesis(query_data: dict) -> bytes:
     )
     return res.content
 
-def play_wavfile(wav_data: bytes):
+def play_wavfile(wav_data: bytes, text):
     sample_rate = 24000
     wav_array = np.frombuffer(wav_data, dtype=np.int16)
     sd.play(wav_array, sample_rate, blocking=True)
-    wa.write("test.wav", sample_rate, wav_array)
+    time.sleep(3)
+    wa.write(f"Programs/JapaneseVocaSound/{text}.wav", sample_rate, wav_array)  #발음 음성 파일 저장하는 코드
+
 
 
 def text_to_voice():
@@ -50,7 +53,7 @@ def text_to_voice():
         
         res = post_audio_query(text)
         wav = post_synthesis(res)
-        play_wavfile(wav)
+        play_wavfile(wav, text)
 
 
 
