@@ -38,8 +38,9 @@ def post_synthesis(query_data: dict) -> bytes:
 def play_wavfile(wav_data: bytes):
     sample_rate = 24000
     wav_array = np.frombuffer(wav_data, dtype=np.int16)
-    wa.write("test.wav", 1, wav_array)
     sd.play(wav_array, sample_rate, blocking=True)
+    wa.write("test.wav", 44100, wav_array)
+
 
 def text_to_voice():
     while True:
@@ -49,6 +50,7 @@ def text_to_voice():
         
         res = post_audio_query(text)
         wav = post_synthesis(res)
+        play_wavfile(wav)
 
 
 
