@@ -8,19 +8,17 @@ try_num = 0
 try_string = str()
 JF = open('Programs/JapaneseVoca.txt', 'r', encoding="UTF-8") # 상대 경로
 Jstr = list()
-try_file = open("Programs/try_num.txt", 'r', encoding="UTF-8") # 상대 경로
+
+with open("Programs/try_num.txt", 'r', encoding="UTF-8") as f:
+    #try_num을 try_file에 저장된 시도 횟수를 읽어 저장
+    try_string = f.readline()
+    #파일에서 시도 횟수 가져오고 파일 닫기
 
 
-#try_num을 try_file에 저장된 시도 횟수를 읽어 저장
-try_string = try_file.readline()
-try_file.close()
-#파일에서 시도 횟수 가져오고 파일 닫기
-
-try_file = open("Programs/try_num.txt", 'r+', encoding="UTF-8") #읽기 쓰기 타입으로 파일 염, 기존 내용 유지, 상대 경로로 열기
-
-try_num = int(try_string) + 1
-try_file.write(f"{try_num}")
-try_file.close()
+#읽기 쓰기 타입으로 파일 염, 기존 내용 유지, 상대 경로로 열기
+with open("Programs/try_num.txt", 'r+', encoding="UTF-8") as f:
+    try_num = int(try_string) + 1
+    f.write(f"{try_num}")
 #파일 시도 횟수 저장하기
 
 
