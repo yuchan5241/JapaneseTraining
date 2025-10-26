@@ -1,3 +1,6 @@
 import os
 
-os.system("C:/Users/admin/JapaneseProgram/VOICEVOX/vv-engine/run.exe")
+try:
+    os.system("/JapaneseProgram/VOICEVOX/vv-engine/run.exe")
+except:
+    exit()

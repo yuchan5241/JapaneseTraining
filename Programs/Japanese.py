@@ -1,5 +1,6 @@
 import re
 import random
+import sounddevice as sd
 
 random_num = 0
 already_answered = []
@@ -54,8 +55,10 @@ while True:
         break
     if(ans == Jstr2[1]):
         print("맞았습니다.")
+        sd.play(f"/JapaneseProgram/Programs/JapaneseVocaSound/{Jstr2[1]}")
     else:
         print("틀렸습니다.")
+        sd.play(f"/JapaneseProgram/Programs/JapaneseVocaSound/{Jstr2[1]}")
         false_answer.write(f"{Jstr2[0]} {Jstr2[1]} {Jstr2[2]}\n")
     print()
 

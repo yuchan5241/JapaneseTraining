@@ -1,14 +1,17 @@
 import requests
 import numpy as np
 import json
-import sounddevice as sd
 import scipy.io.wavfile as wa
-import time
 import re
 
 host = "127.0.0.1"
 port = "50021"
 speaker = 3
+
+VocaLen = int()
+
+with open("Programs/JapaneseVoca.txt", "r", encoding="UTF-8") as f:
+    VocaLen = len(f.readlines())
 
 def post_audio_query(text: str) -> dict:  #function annoation :, -> 데이터의 타입에 대한 보충 설명, : (입력 데이터 타입), -> (출력 데이터 타입)
     params = {"text": text, "speaker": speaker}
@@ -54,7 +57,7 @@ def texts_to_voice():
     with open("Programs/JapaneseVoca.txt", "r", encoding = "UTF-8") as f:
         Vocalist = f.readlines()
         Vocalist2 = list()
-        for i in range(583):
+        for i in range(VocaLen):
             Vocalist2.append(re.split(r"[\u3000\s+]", Vocalist[i])[0])
     
     return Vocalist2
@@ -64,8 +67,8 @@ if __name__ == "__main__":
     txts = texts_to_voice()
 
     try:
-        for i in range(583):
+        for i in range(VocaLen):
             text_to_voice(txts[i])
-            print(f"음성파일 합성 중 {i+1}/583")
+            print(f"음성파일 합성 중 {i+1}/{VocaLen}")
     except:
         print("합성 종료")
