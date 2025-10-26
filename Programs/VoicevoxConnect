@@ -1,3 +1,3 @@
 import os
 
-os.system("C:/Users/sunfl/AppData/Local/Programs/VOICEVOX/vv-engine/run.exe")
+os.system("C:/Users/admin/JapaneseProgram/VOICEVOX/vv-engine/run.exe")

@@ -4,6 +4,7 @@ import json
 import sounddevice as sd
 import scipy.io.wavfile as wa
 import time
+import re
 
 host = "127.0.0.1"
 port = "50021"
@@ -39,23 +40,32 @@ def post_synthesis(query_data: dict) -> bytes:
 def play_wavfile(wav_data: bytes, text):
     sample_rate = 24000
     wav_array = np.frombuffer(wav_data, dtype=np.int16)
-    sd.play(wav_array, sample_rate, blocking=True)
-    time.sleep(3)
     wa.write(f"Programs/JapaneseVocaSound/{text}.wav", sample_rate, wav_array)  #발음 음성 파일 저장하는 코드
 
 
 
-def text_to_voice():
-    while True:
-        text = input("입력 : ")
-        if text == "q":
-            exit()
-        
-        res = post_audio_query(text)
-        wav = post_synthesis(res)
-        play_wavfile(wav, text)
+def text_to_voice(text: str):
+    res = post_audio_query(text)
+    wav = post_synthesis(res)
+    play_wavfile(wav, text)
 
 
+def texts_to_voice():
+    with open("Programs/JapaneseVoca.txt", "r", encoding = "UTF-8") as f:
+        Vocalist = f.readlines()
+        Vocalist2 = list()
+        for i in range(583):
+            Vocalist2.append(re.split(r"[\u3000\s+]", Vocalist[i])[0])
+    
+    return Vocalist2
 
 if __name__ == "__main__":
-    text_to_voice()
+
+    txts = texts_to_voice()
+
+    try:
+        for i in range(583):
+            text_to_voice(txts[i])
+            print(f"음성파일 합성 중 {i+1}/583")
+    except:
+        print("합성 종료")
