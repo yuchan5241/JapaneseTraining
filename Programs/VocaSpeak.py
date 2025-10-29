@@ -55,10 +55,10 @@ def text_to_voice(text: str):
 
 def texts_to_voice():
     with open("Programs/JapaneseVoca.txt", "r", encoding = "UTF-8") as f:
-        Vocalist = f.readlines()
+        Vocalist = f.readlines()    #Voca 파일 내에 단어들을 읽어서 가져옴
         Vocalist2 = list()
         for i in range(VocaLen):
-            Vocalist2.append(re.split(r"[\u3000\s+]", Vocalist[i])[0])
+            Vocalist2.append(re.split(r"[\u3000\s+]", Vocalist[i])[0])  #단어들의 첫번째 인덱스(한자)를 가져옴
     
     return Vocalist2
 
@@ -68,7 +68,14 @@ if __name__ == "__main__":
 
     try:
         for i in range(VocaLen):
-            text_to_voice(txts[i])
-            print(f"음성파일 합성 중 {i+1}/{VocaLen}")
+            try:
+                f = open(f"Programs/JapaneseVocaSound/{txts[i]}.wav", 'r')
+                f.close()
+                print(f"음성 합성 건너뛰기\n {i+1}/{VocaLen}")
+                pass
+                #중복되는 음성 파일 건너뛰기
+            except:
+                text_to_voice(txts[i])
+                print(f"음성파일 합성 중 {i+1}/{VocaLen}")
     except:
         print("합성 종료")
