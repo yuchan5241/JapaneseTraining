@@ -1,6 +1,8 @@
 import re
 import random
 import sounddevice as sd
+import json
+from scipy.io import wavfile
 
 random_num = 0
 already_answered = []
@@ -49,14 +51,16 @@ while True:
     except:
         break
 
+    rate, wav_array = wavfile.read(f"Programs/JapaneseVocaSound/{Jstr2[0]}.wav")   #한자로 저장되어 있으므로 Jstr[0] 사용
+
     if(ans == "exit"):
         break
     if(ans == Jstr2[1]):
         print("맞았습니다.")
-        sd.play(f"/JapaneseProgram/Programs/JapaneseVocaSound/{Jstr2[1]}")
+        sd.play(wav_array, samplerate=rate)
     else:
         print("틀렸습니다.")
-        sd.play(f"/JapaneseProgram/Programs/JapaneseVocaSound/{Jstr2[1]}")
+        sd.play(wav_array, samplerate=rate)
         false_answer.write(f"{Jstr2[0]} {Jstr2[1]} {Jstr2[2]}\n")
     print()
 
@@ -65,10 +69,6 @@ false_answer.close()
 
 JF.close()
 
-
-#Git conflit 발생 시키는 코드
-# 일본어 프로그램
-# 반복 횟수는 단어 갯수만큼
 
 #git init
 #git add 파일명
